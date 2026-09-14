@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>برای شقایق ❤️</title>
+<style>
+*{box-sizing:border-box} body{margin:0;min-height:100vh;display:grid;place-items:center;
+font-family:Tahoma,Arial,sans-serif;background:radial-gradient(circle at 50% 20%,#32101d,#0b0709 60%,#050405);
+color:#fff;overflow:hidden}
+.card{width:min(90%,520px);padding:42px 28px;text-align:center;border:1px solid #ffffff22;
+border-radius:28px;background:#120b0eee;backdrop-filter:blur(10px);box-shadow:0 0 60px #ff315522}
+h1{font-size:38px;margin:0 0 18px}.heart{font-size:42px;animation:pulse 1.4s infinite}
+p{font-size:18px;line-height:2.1;color:#f4dfe5;margin:12px 0}
+button{border:0;border-radius:999px;padding:14px 28px;font-size:17px;cursor:pointer;
+background:#fff;color:#1a0b10;box-shadow:0 8px 30px #0008;margin-top:14px}
+.small{font-size:13px;color:#bdaeb3;margin-top:20px}
+.float{position:fixed;bottom:-30px;font-size:20px;opacity:.6;animation:up 7s linear infinite}
+@keyframes pulse{50%{transform:scale(1.15)}} @keyframes up{to{transform:translateY(-110vh);opacity:0}}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="heart">❤️</div>
+<h1>شقایق جان...</h1>
+<p>
+بعضی آدم‌ها فقط وارد زندگی آدم نمی‌شن؛<br>
+آروم‌آروم تبدیل می‌شن به قشنگ‌ترین قسمتِ زندگی.<br>
+و برای من، اون آدم تویی.
+</p>
+<p>
+اگه دوباره قرار بود انتخاب کنم،<br>
+باز هم دلم تو رو انتخاب می‌کرد. ❤️
+</p>
+<button onclick="playSong()">🎵 این آهنگ برای توئه</button>
+<audio id="song" controls style="width:100%;margin-top:18px;display:none">
+<source src="https://dl.open-musics.ir/2023/07/30/Kazim%20Can%20-%20Ashiq%20olmusan.mp3" type="audio/mpeg">
+</audio>
+<div class="small">برای شقایق، با تمام قلبم ❤️</div>
+</div>
+<script>
+function playSong(){
+ const a=document.getElementById('song'); a.style.display='block'; a.play().catch(()=>{});
+}
+for(let i=0;i<12;i++){
+ const s=document.createElement('span'); s.className='float'; s.textContent='♥';
+ s.style.left=Math.random()*100+'vw'; s.style.animationDelay=Math.random()*7+'s';
+ s.style.animationDuration=(5+Math.random()*5)+'s'; document.body.appendChild(s);
+}
+</script>
+</body>
+</html>
