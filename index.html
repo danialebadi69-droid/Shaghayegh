@@ -1,164 +1,533 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#8b0018">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#780018">
 <title>برای شقایق ❤️</title>
+
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Tahoma,Arial,sans-serif}
-body{
-  overflow:hidden;color:#fff;
-  background:
-    radial-gradient(circle at 50% 15%,#ff355d55 0 7%,transparent 28%),
-    radial-gradient(circle at 15% 85%,#ff003355,transparent 30%),
-    linear-gradient(145deg,#210006,#720016 48%,#260006);
+*{
+  box-sizing:border-box;
 }
-#hearts{position:fixed;inset:0;overflow:hidden;pointer-events:none}
-.heart{position:absolute;bottom:-50px;font-size:24px;opacity:.8;animation:rise linear forwards}
-@keyframes rise{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+
+html,body{
+  margin:0;
+  width:100%;
+  min-height:100%;
+  font-family:Tahoma,Arial,sans-serif;
+}
+
+body{
+  overflow:hidden;
+  color:white;
+  background:
+    radial-gradient(circle at 50% 10%,#ff416455,transparent 30%),
+    radial-gradient(circle at 10% 90%,#ff174455,transparent 35%),
+    linear-gradient(145deg,#190004,#720018 50%,#210005);
+}
+
+/* قلب‌های متحرک */
+#hearts{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.heart{
+  position:absolute;
+  bottom:-60px;
+  animation:rise linear forwards;
+  opacity:.85;
+  filter:drop-shadow(0 0 8px #ff5270);
+}
+
+@keyframes rise{
+  from{
+    transform:translateY(0) rotate(0deg);
+    opacity:0;
+  }
+  15%{
+    opacity:.9;
+  }
+  to{
+    transform:translateY(-115vh) rotate(360deg);
+    opacity:0;
+  }
+}
+
+/* صفحه‌ها */
 .screen{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  padding:24px;opacity:0;pointer-events:none;transform:scale(.96);
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:22px;
+  opacity:0;
+  pointer-events:none;
+  transform:scale(.94);
   transition:.55s ease;
 }
-.screen.active{opacity:1;pointer-events:auto;transform:scale(1)}
+
+.screen.active{
+  opacity:1;
+  pointer-events:auto;
+  transform:scale(1);
+}
+
+/* کارت */
 .card{
-  width:min(430px,100%);min-height:600px;max-height:92vh;overflow:auto;
-  border:1px solid #ff5875aa;border-radius:30px;padding:34px 24px;
-  background:linear-gradient(180deg,#610014c9,#210006dd);
-  box-shadow:0 0 50px #ff003544,inset 0 0 45px #ff174422;
-  backdrop-filter:blur(12px);text-align:center;
+  width:min(430px,100%);
+  max-height:90vh;
+  overflow:auto;
+  padding:34px 24px;
+  text-align:center;
+
+  border-radius:30px;
+  border:1px solid #ff668055;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(125,0,25,.88),
+      rgba(28,0,7,.94)
+    );
+
+  backdrop-filter:blur(15px);
+
+  box-shadow:
+    0 0 45px #ff174455,
+    inset 0 0 35px #ff174422;
 }
+
+/* قلب بزرگ */
 .glow-heart{
-  width:150px;height:150px;margin:0 auto 20px;display:grid;place-items:center;
-  border:2px solid #ff5270;border-radius:50%;
-  box-shadow:0 0 25px #ff1744,0 0 80px #ff174466;
-  font-size:76px;animation:pulse 1.5s infinite;
+  width:145px;
+  height:145px;
+  margin:0 auto 22px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  border-radius:50%;
+  border:2px solid #ff5575;
+
+  font-size:72px;
+
+  box-shadow:
+    0 0 25px #ff1744,
+    0 0 75px #ff174466;
+
+  animation:pulse 1.6s infinite;
 }
-@keyframes pulse{50%{transform:scale(1.07);box-shadow:0 0 45px #ff1744,0 0 100px #ff174488}}
-h1{font-size:30px;margin:12px 0;color:#fff;text-shadow:0 0 15px #ff4164}
-h2{font-size:25px;line-height:1.8;margin:18px 0}
-p{font-size:17px;line-height:2;color:#ffdce3}
-.buttons{display:grid;gap:14px;margin-top:28px}
+
+@keyframes pulse{
+  50%{
+    transform:scale(1.07);
+    box-shadow:
+      0 0 45px #ff1744,
+      0 0 100px #ff174488;
+  }
+}
+
+h1{
+  margin:12px 0;
+  font-size:30px;
+  text-shadow:0 0 15px #ff4164;
+}
+
+h2{
+  margin:18px 0;
+  font-size:25px;
+  line-height:1.8;
+}
+
+p{
+  color:#ffdce4;
+  font-size:17px;
+  line-height:2;
+}
+
+/* دکمه‌ها */
+.buttons{
+  display:grid;
+  gap:14px;
+  margin-top:28px;
+}
+
 button{
-  border:1px solid #ff5875;background:#8c0925;color:white;
-  border-radius:18px;padding:16px;font-size:18px;font-weight:bold;
-  cursor:pointer;box-shadow:0 0 18px #ff174433;transition:.2s
+  width:100%;
+  border:none;
+  border-radius:18px;
+  padding:16px;
+
+  color:white;
+  background:#850b28;
+
+  border:1px solid #ff5875;
+
+  font-family:inherit;
+  font-size:18px;
+  font-weight:bold;
+
+  cursor:pointer;
+
+  box-shadow:0 0 18px #ff174433;
+
+  transition:.2s;
 }
-button:hover{transform:translateY(-2px);box-shadow:0 0 25px #ff174477}
-button.yes{background:linear-gradient(135deg,#ff1744,#b40027)}
-button.no{background:#300711}
-.music{
-  margin:25px 0 5px;padding:15px;border:1px solid #ff557088;border-radius:18px;
-  background:#26050bdd
+
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 28px #ff174477;
 }
-.music small{display:block;color:#ffc1cc;margin-bottom:9px}
-input[type=range]{width:100%;accent-color:#ff4164}
-.note{font-size:13px;color:#ffb2bf;margin-top:15px}
-.final{font-size:20px;line-height:2.1}
-.signature{font-size:28px;margin-top:25px;color:#ffb7c4}
+
+button:active{
+  transform:scale(.97);
+}
+
+.yes{
+  background:linear-gradient(135deg,#ff1744,#b40027);
+}
+
+.no{
+  background:#300711;
+}
+
+.final{
+  font-size:20px;
+  line-height:2.15;
+}
+
+.signature{
+  margin-top:25px;
+  font-size:28px;
+  color:#ffb7c4;
+  text-shadow:0 0 15px #ff4164;
+}
+
+.small{
+  margin-top:18px;
+  color:#ffb7c4;
+  font-size:13px;
+}
 </style>
 </head>
+
 <body>
+
 <div id="hearts"></div>
 
-<audio id="music" loop preload="auto">
-  <source src="love-song.mp3" type="audio/mpeg">
-</audio>
 
+<!-- صفحه اول -->
 <section class="screen active" id="s1">
-  <div class="card">
-    <div class="glow-heart">❤️</div>
-    <h1>برای شقایق</h1>
-    <p>یه چیز کوچولو برات آماده کردم...<br>فقط تا آخرش با من بیا ❤️</p>
-    <div class="music">
-      <small>🎵 آهنگ مخصوص تو</small>
-      <input id="volume" type="range" min="0" max="1" step=".05" value=".65">
-    </div>
-    <button class="yes" onclick="go(2);playMusic()">بزن بریم ❤️</button>
-    <div class="note">هر کلیک، یه قدم نزدیک‌تر به جواب منه... ✨</div>
-  </div>
+
+<div class="card">
+
+<div class="glow-heart">
+❤️
+</div>
+
+<h1>برای شقایق ❤️</h1>
+
+<p>
+یه چیز کوچولو برات آماده کردم...<br>
+فقط تا آخرش با من بیا 🥹❤️
+</p>
+
+<div class="buttons">
+
+<button class="yes" onclick="go(2)">
+بزن بریم ❤️
+</button>
+
+</div>
+
+<div class="small">
+این صفحه فقط برای تو ساخته شده 💕
+</div>
+
+</div>
+
 </section>
 
+
+<!-- صفحه دوم -->
 <section class="screen" id="s2">
-  <div class="card">
-    <div class="glow-heart">💗</div>
-    <h2>فکر می‌کنی می‌دونی<br>چقدر دوستت دارم؟</h2>
-    <div class="buttons">
-      <button class="yes" onclick="go(3)">آره ❤️</button>
-      <button class="no" onclick="go(3)">نه 😌</button>
-    </div>
-  </div>
+
+<div class="card">
+
+<div class="glow-heart">
+💗
+</div>
+
+<h2>
+فکر می‌کنی می‌دونی<br>
+چقدر دوستت دارم؟
+</h2>
+
+<div class="buttons">
+
+<button class="yes" onclick="go(3)">
+آره ❤️
+</button>
+
+<button class="no" onclick="go(3)">
+نه 😌
+</button>
+
+</div>
+
+</div>
+
 </section>
 
+
+<!-- صفحه سوم -->
 <section class="screen" id="s3">
-  <div class="card">
-    <div class="glow-heart">🥹❤️</div>
-    <h2>پس... نه نمی‌دونی<br>که چقدر دوستت دارم!</h2>
-    <div class="buttons">
-      <button class="yes" onclick="go(4)">می‌خوای بدونی چقدر دوستت دارم؟ 💕</button>
-      <button class="no" onclick="go(5)">نه، نمی‌خوام 🙈</button>
-    </div>
-  </div>
+
+<div class="card">
+
+<div class="glow-heart">
+🥹❤️
+</div>
+
+<h2>
+نه... نمی‌دونی<br>
+که چقدر دوستت دارم!
+</h2>
+
+<p>
+چون چیزی که من نسبت به تو حس می‌کنم
+با چندتا کلمه قابل توضیح نیست... ❤️
+</p>
+
+<div class="buttons">
+
+<button class="yes" onclick="go(4)">
+می‌خوای بدونی چقدر دوستت دارم؟ 💕
+</button>
+
+<button class="no" onclick="go(5)">
+نه، نمی‌خوام 🙈
+</button>
+
+</div>
+
+</div>
+
 </section>
 
+
+<!-- صفحه چهارم -->
 <section class="screen" id="s4">
-  <div class="card">
-    <div class="glow-heart">🫂❤️</div>
-    <h1>پس قرارمون اینه...</h1>
-    <p class="final">وقتی دیدمت،<br><strong>بیا بغلم بگم... ❤️</strong></p>
-    <p>چیزهایی هست که با هزار تا کلمه هم نمی‌شه گفت؛<br>باید نزدیکت باشم تا خودت بفهمی. 🥰</p>
-    <button class="yes" onclick="go(6)">حالا ادامه‌ش رو بخون ❤️</button>
-  </div>
+
+<div class="card">
+
+<div class="glow-heart">
+🫂❤️
+</div>
+
+<h1>
+پس قرارمون اینه...
+</h1>
+
+<p class="final">
+
+وقتی دیدمت،<br>
+
+<strong>
+بیا بغلم بگم... ❤️
+</strong>
+
+</p>
+
+<p>
+چیزهایی هست که با هزار تا کلمه هم
+نمی‌شه گفت؛<br>
+
+باید نزدیکت باشم
+تا خودت بفهمی. 🥰❤️
+</p>
+
+<div class="buttons">
+
+<button class="yes" onclick="go(6)">
+ادامه‌ش رو بخون ❤️
+</button>
+
+</div>
+
+</div>
+
 </section>
 
+
+<!-- اگر گفت نمی‌خوام -->
 <section class="screen" id="s5">
-  <div class="card">
-    <div class="glow-heart">🥺❤️</div>
-    <h2>باشه... ولی من هنوز دوستت دارم 😌</h2>
-    <p>حتی اگه نخوای بدونی، قلب من جوابش رو می‌دونه. ❤️</p>
-    <button class="yes" onclick="go(4)">خب حالا بگو... 🥹</button>
-  </div>
+
+<div class="card">
+
+<div class="glow-heart">
+🥺❤️
+</div>
+
+<h2>
+باشه... 😌
+</h2>
+
+<p>
+ولی من هنوز دوستت دارم،<br>
+حتی اگه نخوای بدونی. ❤️
+</p>
+
+<p>
+قلب من خودش جواب رو می‌دونه. 💕
+</p>
+
+<div class="buttons">
+
+<button class="yes" onclick="go(4)">
+خب حالا بگو... 🥹
+</button>
+
+</div>
+
+</div>
+
 </section>
 
+
+<!-- صفحه پایانی -->
 <section class="screen" id="s6">
-  <div class="card">
-    <div class="glow-heart">❤️</div>
-    <h1>شقایق جان...</h1>
-    <p class="final">
-      تو فقط یه آدم خاص نیستی؛<br>
-      تو همون آدمی هستی که بودنش<br>
-      یه گوشه از دنیای منو قشنگ‌تر کرده. ❤️
-    </p>
-    <p class="final"><strong>من تو رو بیشتر از چیزی که بشه با کلمه گفت، دوست دارم. ❤️∞</strong></p>
-    <div class="signature">دانیال ❤️</div>
-  </div>
+
+<div class="card">
+
+<div class="glow-heart">
+❤️
+</div>
+
+<h1>
+شقایق جان...
+</h1>
+
+<p class="final">
+
+تو فقط یه آدم خاص نیستی؛<br>
+
+تو همون آدمی هستی که بودنش
+یه گوشه از دنیای منو قشنگ‌تر کرده. ❤️
+
+</p>
+
+<p class="final">
+
+<strong>
+من تو رو بیشتر از چیزی که بشه
+با کلمه گفت، دوست دارم. ❤️∞
+</strong>
+
+</p>
+
+<div class="signature">
+دانیال ❤️
+</div>
+
+</div>
+
 </section>
+
 
 <script>
-const music=document.getElementById('music');
-document.getElementById('volume').addEventListener('input',e=>music.volume=e.target.value);
-music.volume=.65;
-function playMusic(){music.play().catch(()=>{});}
-function go(n){
-  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
-  document.getElementById('s'+n).classList.add('active');
-  burst();
+
+/* ساخت قلب‌های متحرک */
+
+function createHeart(){
+
+  const heart=document.createElement("span");
+
+  heart.className="heart";
+
+  const hearts=[
+    "❤️",
+    "💗",
+    "💕",
+    "💖",
+    "💘",
+    "💓",
+    "💞",
+    "💝",
+    "❤️‍🔥"
+  ];
+
+  heart.innerText=
+    hearts[Math.floor(Math.random()*hearts.length)];
+
+  heart.style.left=
+    Math.random()*100+"vw";
+
+  heart.style.fontSize=
+    (16+Math.random()*30)+"px";
+
+  heart.style.animationDuration=
+    (5+Math.random()*6)+"s";
+
+  document
+    .getElementById("hearts")
+    .appendChild(heart);
+
+  setTimeout(()=>{
+    heart.remove();
+  },12000);
 }
-function heart(){
-  const h=document.createElement('span'); h.className='heart';
-  h.textContent=['❤️','💗','💕','💖','💘','💓','💞','💝'][Math.floor(Math.random()*8)];
-  h.style.left=Math.random()*100+'vw';
-  h.style.fontSize=(16+Math.random()*30)+'px';
-  h.style.animationDuration=(5+Math.random()*6)+'s';
-  document.getElementById('hearts').appendChild(h);
-  setTimeout(()=>h.remove(),12000);
+
+
+/* تولید دائمی قلب */
+
+setInterval(createHeart,260);
+
+
+/* رفتن به صفحه بعد */
+
+function go(number){
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen=>{
+      screen.classList.remove("active");
+    });
+
+  document
+    .getElementById("s"+number)
+    .classList.add("active");
+
+  heartBurst();
 }
-setInterval(heart,260);
-function burst(){for(let i=0;i<16;i++)setTimeout(heart,i*55)}
-burst();
+
+
+/* انفجار قلب */
+
+function heartBurst(){
+
+  for(let i=0;i<18;i++){
+
+    setTimeout(()=>{
+      createHeart();
+    },i*50);
+
+  }
+
+}
+
+
+/* شروع افکت */
+
+heartBurst();
+
 </script>
+
 </body>
 </html>
