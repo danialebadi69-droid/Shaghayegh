@@ -2,51 +2,163 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#8b0018">
 <title>برای شقایق ❤️</title>
 <style>
-*{box-sizing:border-box} body{margin:0;min-height:100vh;display:grid;place-items:center;
-font-family:Tahoma,Arial,sans-serif;background:radial-gradient(circle at 50% 20%,#32101d,#0b0709 60%,#050405);
-color:#fff;overflow:hidden}
-.card{width:min(90%,520px);padding:42px 28px;text-align:center;border:1px solid #ffffff22;
-border-radius:28px;background:#120b0eee;backdrop-filter:blur(10px);box-shadow:0 0 60px #ff315522}
-h1{font-size:38px;margin:0 0 18px}.heart{font-size:42px;animation:pulse 1.4s infinite}
-p{font-size:18px;line-height:2.1;color:#f4dfe5;margin:12px 0}
-button{border:0;border-radius:999px;padding:14px 28px;font-size:17px;cursor:pointer;
-background:#fff;color:#1a0b10;box-shadow:0 8px 30px #0008;margin-top:14px}
-.small{font-size:13px;color:#bdaeb3;margin-top:20px}
-.float{position:fixed;bottom:-30px;font-size:20px;opacity:.6;animation:up 7s linear infinite}
-@keyframes pulse{50%{transform:scale(1.15)}} @keyframes up{to{transform:translateY(-110vh);opacity:0}}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Tahoma,Arial,sans-serif}
+body{
+  overflow:hidden;color:#fff;
+  background:
+    radial-gradient(circle at 50% 15%,#ff355d55 0 7%,transparent 28%),
+    radial-gradient(circle at 15% 85%,#ff003355,transparent 30%),
+    linear-gradient(145deg,#210006,#720016 48%,#260006);
+}
+#hearts{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.heart{position:absolute;bottom:-50px;font-size:24px;opacity:.8;animation:rise linear forwards}
+@keyframes rise{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+.screen{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  padding:24px;opacity:0;pointer-events:none;transform:scale(.96);
+  transition:.55s ease;
+}
+.screen.active{opacity:1;pointer-events:auto;transform:scale(1)}
+.card{
+  width:min(430px,100%);min-height:600px;max-height:92vh;overflow:auto;
+  border:1px solid #ff5875aa;border-radius:30px;padding:34px 24px;
+  background:linear-gradient(180deg,#610014c9,#210006dd);
+  box-shadow:0 0 50px #ff003544,inset 0 0 45px #ff174422;
+  backdrop-filter:blur(12px);text-align:center;
+}
+.glow-heart{
+  width:150px;height:150px;margin:0 auto 20px;display:grid;place-items:center;
+  border:2px solid #ff5270;border-radius:50%;
+  box-shadow:0 0 25px #ff1744,0 0 80px #ff174466;
+  font-size:76px;animation:pulse 1.5s infinite;
+}
+@keyframes pulse{50%{transform:scale(1.07);box-shadow:0 0 45px #ff1744,0 0 100px #ff174488}}
+h1{font-size:30px;margin:12px 0;color:#fff;text-shadow:0 0 15px #ff4164}
+h2{font-size:25px;line-height:1.8;margin:18px 0}
+p{font-size:17px;line-height:2;color:#ffdce3}
+.buttons{display:grid;gap:14px;margin-top:28px}
+button{
+  border:1px solid #ff5875;background:#8c0925;color:white;
+  border-radius:18px;padding:16px;font-size:18px;font-weight:bold;
+  cursor:pointer;box-shadow:0 0 18px #ff174433;transition:.2s
+}
+button:hover{transform:translateY(-2px);box-shadow:0 0 25px #ff174477}
+button.yes{background:linear-gradient(135deg,#ff1744,#b40027)}
+button.no{background:#300711}
+.music{
+  margin:25px 0 5px;padding:15px;border:1px solid #ff557088;border-radius:18px;
+  background:#26050bdd
+}
+.music small{display:block;color:#ffc1cc;margin-bottom:9px}
+input[type=range]{width:100%;accent-color:#ff4164}
+.note{font-size:13px;color:#ffb2bf;margin-top:15px}
+.final{font-size:20px;line-height:2.1}
+.signature{font-size:28px;margin-top:25px;color:#ffb7c4}
 </style>
 </head>
 <body>
-<div class="card">
-<div class="heart">❤️</div>
-<h1>شقایق جان...</h1>
-<p>
-بعضی آدم‌ها فقط وارد زندگی آدم نمی‌شن؛<br>
-آروم‌آروم تبدیل می‌شن به قشنگ‌ترین قسمتِ زندگی.<br>
-و برای من، اون آدم تویی.
-</p>
-<p>
-اگه دوباره قرار بود انتخاب کنم،<br>
-باز هم دلم تو رو انتخاب می‌کرد. ❤️
-</p>
-<button onclick="playSong()">🎵 این آهنگ برای توئه</button>
-<audio id="song" controls style="width:100%;margin-top:18px;display:none">
-<source src="https://dl.open-musics.ir/2023/07/30/Kazim%20Can%20-%20Ashiq%20olmusan.mp3" type="audio/mpeg">
+<div id="hearts"></div>
+
+<audio id="music" loop preload="auto">
+  <source src="love-song.mp3" type="audio/mpeg">
 </audio>
-<div class="small">برای شقایق، با تمام قلبم ❤️</div>
-</div>
+
+<section class="screen active" id="s1">
+  <div class="card">
+    <div class="glow-heart">❤️</div>
+    <h1>برای شقایق</h1>
+    <p>یه چیز کوچولو برات آماده کردم...<br>فقط تا آخرش با من بیا ❤️</p>
+    <div class="music">
+      <small>🎵 آهنگ مخصوص تو</small>
+      <input id="volume" type="range" min="0" max="1" step=".05" value=".65">
+    </div>
+    <button class="yes" onclick="go(2);playMusic()">بزن بریم ❤️</button>
+    <div class="note">هر کلیک، یه قدم نزدیک‌تر به جواب منه... ✨</div>
+  </div>
+</section>
+
+<section class="screen" id="s2">
+  <div class="card">
+    <div class="glow-heart">💗</div>
+    <h2>فکر می‌کنی می‌دونی<br>چقدر دوستت دارم؟</h2>
+    <div class="buttons">
+      <button class="yes" onclick="go(3)">آره ❤️</button>
+      <button class="no" onclick="go(3)">نه 😌</button>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="s3">
+  <div class="card">
+    <div class="glow-heart">🥹❤️</div>
+    <h2>پس... نه نمی‌دونی<br>که چقدر دوستت دارم!</h2>
+    <div class="buttons">
+      <button class="yes" onclick="go(4)">می‌خوای بدونی چقدر دوستت دارم؟ 💕</button>
+      <button class="no" onclick="go(5)">نه، نمی‌خوام 🙈</button>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="s4">
+  <div class="card">
+    <div class="glow-heart">🫂❤️</div>
+    <h1>پس قرارمون اینه...</h1>
+    <p class="final">وقتی دیدمت،<br><strong>بیا بغلم بگم... ❤️</strong></p>
+    <p>چیزهایی هست که با هزار تا کلمه هم نمی‌شه گفت؛<br>باید نزدیکت باشم تا خودت بفهمی. 🥰</p>
+    <button class="yes" onclick="go(6)">حالا ادامه‌ش رو بخون ❤️</button>
+  </div>
+</section>
+
+<section class="screen" id="s5">
+  <div class="card">
+    <div class="glow-heart">🥺❤️</div>
+    <h2>باشه... ولی من هنوز دوستت دارم 😌</h2>
+    <p>حتی اگه نخوای بدونی، قلب من جوابش رو می‌دونه. ❤️</p>
+    <button class="yes" onclick="go(4)">خب حالا بگو... 🥹</button>
+  </div>
+</section>
+
+<section class="screen" id="s6">
+  <div class="card">
+    <div class="glow-heart">❤️</div>
+    <h1>شقایق جان...</h1>
+    <p class="final">
+      تو فقط یه آدم خاص نیستی؛<br>
+      تو همون آدمی هستی که بودنش<br>
+      یه گوشه از دنیای منو قشنگ‌تر کرده. ❤️
+    </p>
+    <p class="final"><strong>من تو رو بیشتر از چیزی که بشه با کلمه گفت، دوست دارم. ❤️∞</strong></p>
+    <div class="signature">دانیال ❤️</div>
+  </div>
+</section>
+
 <script>
-function playSong(){
- const a=document.getElementById('song'); a.style.display='block'; a.play().catch(()=>{});
+const music=document.getElementById('music');
+document.getElementById('volume').addEventListener('input',e=>music.volume=e.target.value);
+music.volume=.65;
+function playMusic(){music.play().catch(()=>{});}
+function go(n){
+  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  burst();
 }
-for(let i=0;i<12;i++){
- const s=document.createElement('span'); s.className='float'; s.textContent='♥';
- s.style.left=Math.random()*100+'vw'; s.style.animationDelay=Math.random()*7+'s';
- s.style.animationDuration=(5+Math.random()*5)+'s'; document.body.appendChild(s);
+function heart(){
+  const h=document.createElement('span'); h.className='heart';
+  h.textContent=['❤️','💗','💕','💖','💘','💓','💞','💝'][Math.floor(Math.random()*8)];
+  h.style.left=Math.random()*100+'vw';
+  h.style.fontSize=(16+Math.random()*30)+'px';
+  h.style.animationDuration=(5+Math.random()*6)+'s';
+  document.getElementById('hearts').appendChild(h);
+  setTimeout(()=>h.remove(),12000);
 }
+setInterval(heart,260);
+function burst(){for(let i=0;i<16;i++)setTimeout(heart,i*55)}
+burst();
 </script>
 </body>
 </html>
